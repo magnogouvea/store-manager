@@ -5,7 +5,7 @@ const getAll = async (_req, res) => {
   if (!products) {
     return res.status(404).json({ message: 'Product not found' });
   }
-  res.status(200).json(products);
+  return res.status(200).json(products);
 };
 
 const getById = async (req, res) => {
@@ -14,7 +14,7 @@ const getById = async (req, res) => {
   if (!products) {
     return res.status(404).json({ message: 'Product not found' });
   }
-  res.status(200).json(products);
+  return res.status(200).json(products);
 };
 
 module.exports = { getAll, getById };

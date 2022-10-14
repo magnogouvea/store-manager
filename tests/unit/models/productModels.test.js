@@ -11,7 +11,7 @@ describe('models/productModels', () => {
     it("Verifica se todos os produtos são retornados", async () => {
       sinon.stub(db, "execute").resolves([product]);
       const products = await productsModels.getAll();
-      chai.expect(products).to.deep.equal(product);
+      chai.expect(products).to.equal(product);
     });
   });
 
@@ -21,7 +21,7 @@ describe('models/productModels', () => {
       it("Verifica se apenas o id é retornado", async () => {
         sinon.stub(db, "execute").resolves([[product[0]]]);
         const products = await productsModels.getById(1);
-        chai.expect(products).to.deep.equal(product[0]);
+        chai.expect(products).to.equal(product[0]);
       });
     });
   });
@@ -30,7 +30,7 @@ describe('models/productModels', () => {
     it("Verifica se retorna mensagem de erro caso o produto não exista", async () => {
       sinon.stub(db, "execute").resolves([[]]);
       const product = await productsModels.getById(1);
-      chai.expect(product).to.deep.equal(undefined);
+      chai.expect(product).to.equal(undefined);
     });
   });
 });
