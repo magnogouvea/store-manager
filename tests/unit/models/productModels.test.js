@@ -3,9 +3,9 @@ const sinon = require("sinon");
 
 const productsModels = require("../../../src/models/productModels");
 const db = require("../../../src/models/db");
-const product = require('./productModels.mock');
+const { product, insert } = require("./productModels.mock");
 
-describe('models/productModels', () => {
+describe("models/productModels", () => {
   describe("getAll", () => {
     afterEach(sinon.restore);
     it("Verifica se todos os produtos são retornados", async () => {
@@ -33,4 +33,21 @@ describe('models/productModels', () => {
       chai.expect(product).to.equal(undefined);
     });
   });
+
+  // describe("models/productModels", () => {
+  //   describe("insertProduct", () => {
+  //     afterEach(sinon.restore);
+  //     // it("Verifica se adiciona produtos", async () => {
+  //     //   sinon.stub(db, "execute").resolves({ insert });
+  //     //   const product = await productsModels.insertProduct();
+  //     //   chai.expect(product).to.equal(insert);
+  //     // });
+  //       // it("insertProduct", async () => {
+  //       //   const id = 3;
+  //       //   sinon.stub(db, "execute").resolves([{ insertId: 3 }]);
+  //       //   const result = await productsModels.insertProduct(product[id - 1]);
+  //       //   chai.expect(result).to.equal(3);
+  //       // });
+  //   });
+  // });
 });
