@@ -8,6 +8,13 @@ const getAll = async () => {
 const getById = async (id) => {
   const data = await productModel.getById(id);
   return data;
-}; 
+};
 
-module.exports = { getAll, getById };
+const insertProduct = async (name) => {
+  const insertId = await productModel.insertProduct(name);
+  const data = await productModel.getById(insertId);
+  console.log(data);
+  return data;
+};
+
+module.exports = { getAll, getById, insertProduct };
