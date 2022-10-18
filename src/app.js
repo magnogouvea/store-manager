@@ -1,10 +1,12 @@
 const express = require('express');
 const routes = require('./routes/productRouter');
+const salesRoutes = require('./routes/salesRouter');
 
 const app = express();
 app.use(express.json());
 
 app.use('/products', routes);
+app.use('/sales', salesRoutes);
 app.get('/', (_request, response) => {
   response.send();
 });

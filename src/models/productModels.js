@@ -18,4 +18,9 @@ const insertProduct = async (data) => {
   return insertId;
 };
 
-module.exports = { getAll, getById, insertProduct };
+const productId = async () => {
+  const [productsId] = await db.execute('SELECT id FROM products');
+  return productsId;
+};
+
+module.exports = { getAll, getById, insertProduct, productId };
