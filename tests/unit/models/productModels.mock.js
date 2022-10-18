@@ -14,7 +14,6 @@ const product = [
 ];
 
 const insert = {
-  id: 4,
   name: "ProdutoX",
 };
 

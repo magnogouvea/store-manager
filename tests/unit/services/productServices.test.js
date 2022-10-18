@@ -3,7 +3,7 @@ const sinon = require("sinon");
 
 const productModels = require("../../../src/models/productModels");
 const productServices = require("../../../src/services/productService");
-const product = require('./productServices.mock');
+const { product, insert } = require('./productServices.mock');
 
 describe("./services/productService", () => {
   describe("getAll", () => {
@@ -27,10 +27,20 @@ describe("./services/productService", () => {
   });
 
   describe("./services/productService", () => {
+    afterEach(sinon.restore);
     it("Verifica se retorna um erro caso um produto não seja encontrado", async () => {
       sinon.stub(productModels, 'getById').resolves();
       const products = await productServices.getById(1);
       chai.expect(products).to.deep.equal(undefined);
+    });
+  });
+
+  describe("./services/productService", () => {
+    afterEach(sinon.restore);
+    it("Verifica se adiciona produtos", async () => {
+      sinon.stub(productModels, "insertProduct").resolves(2);
+      const products = await productServices.insertProduct(insert.name);
+      chai.expect(products).to.deep.equal({ id: 2, name: "ProdutoX" });
     })
-  })
+  });
 });

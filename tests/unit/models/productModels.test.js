@@ -27,6 +27,7 @@ describe("models/productModels", () => {
   });
 
   describe("models/productModels", () => {
+    afterEach(sinon.restore);
     it("Verifica se retorna mensagem de erro caso o produto não exista", async () => {
       sinon.stub(db, "execute").resolves([[]]);
       const product = await productsModels.getById(1);
@@ -34,20 +35,15 @@ describe("models/productModels", () => {
     });
   });
 
-  // describe("models/productModels", () => {
-  //   describe("insertProduct", () => {
-  //     afterEach(sinon.restore);
-  //     // it("Verifica se adiciona produtos", async () => {
-  //     //   sinon.stub(db, "execute").resolves({ insert });
-  //     //   const product = await productsModels.insertProduct();
-  //     //   chai.expect(product).to.equal(insert);
-  //     // });
-  //       // it("insertProduct", async () => {
-  //       //   const id = 3;
-  //       //   sinon.stub(db, "execute").resolves([{ insertId: 3 }]);
-  //       //   const result = await productsModels.insertProduct(product[id - 1]);
-  //       //   chai.expect(result).to.equal(3);
-  //       // });
-  //   });
-  // });
+  describe("models/productModels", () => {
+    describe("insertProduct", () => {
+      afterEach(sinon.restore);
+      it("Verifica se adiciona produtos", async () => {
+        sinon.stub(db, "execute").resolves([{ insertId: 2 }]);
+        const product = await productsModels.insertProduct(insert.name);
+        console.log(product);
+        chai.expect(product).to.equal(2);
+      });
+    });
+  });
 });

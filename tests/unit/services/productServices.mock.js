@@ -13,4 +13,8 @@ const product = [
   },
 ];
 
-module.exports = product;
+const insert = {
+  name: "ProdutoX",
+};
+
+module.exports = { product, insert };
