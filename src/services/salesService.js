@@ -12,6 +12,26 @@ const insertSale = async (sale) => {
   return { status: 201, message: newSale };
 };
 
+const allSales = async (sale) => {
+  const sales = await salesModels.allSales(sale);
+  if (!sales) {
+    const message = { message: 'Sale not found' };
+    return { status: 404, message };
+  }
+  return { status: 201, message: sales };
+};
+
+const findSaleById = async (id) => {
+  const sales = await salesModels.findSaleById(id);
+  if (sales.length === 0) {
+    const message = { message: 'Sale not found' };
+    return { status: 404, message };
+  }
+  return { status: null, message: sales };
+};
+
 module.exports = {
   insertSale,
+  allSales,
+  findSaleById,
 };

@@ -10,4 +10,28 @@ const newSale = async (sale) => {
   return { id: date.insertId, itemsSold: sale };
 };
 
-module.exports = { newSale };
+const allSales = async () => {
+  const [sales] = await db.execute(
+    `SELECT sale_id AS saleId, date, 
+    product_id AS productId, quantity FROM StoreManager.sales_products AS sp
+    INNER JOIN StoreManager.sales AS s
+    ON s.id = sp.sale_id
+    ORDER by s.id ASC, product_id;
+    `,
+  );
+  return sales;
+};
+
+const findSaleById = async (id) => {
+  const [sale] = await db.execute(
+    `SELECT date, product_id AS productId, quantity FROM StoreManager.sales_products AS sp
+    INNER JOIN StoreManager.sales AS s
+    ON s.id = sp.sale_id
+    WHERE s.id = ?
+    ORDER by s.id ASC, product_id;`,
+    [id],
+  );
+  return sale;
+};
+
+module.exports = { newSale, allSales, findSaleById };
