@@ -18,7 +18,7 @@ const allSales = async (sale) => {
     const message = { message: 'Sale not found' };
     return { status: 404, message };
   }
-  return { status: 201, message: sales };
+  return { status: 200, message: sales };
 };
 
 const findSaleById = async (id) => {
@@ -27,7 +27,7 @@ const findSaleById = async (id) => {
     const message = { message: 'Sale not found' };
     return { status: 404, message };
   }
-  return { status: null, message: sales };
+  return { status: 200, message: sales };
 };
 
 module.exports = {
